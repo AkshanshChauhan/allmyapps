@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        display: grid;
+        align-content: center;
+        justify-content: center;
+        gap: 10px;
+        height: 100vh;
+    }
+
+    .img {
+        background-color: rgb(208, 208, 208);
+        width: 50vw;
+        height: 50vw;
+        justify-self: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .cont {
+        display: flex;
+        gap: 10px;
+        justify-self: center;
+    }
+
+    .image {
+        width: 48vw;
+        height: 48vw;
+    }
+
+    .btn {
+        font-size: xx-large;
+        padding: 5px 20px;
+    }
+
+    select {
+        color: rgb(111, 255, 15);
+    }
+
+    .imgname {
+        justify-self: center;
+
+    }
+</style>
+
+<body>
+    <div class="img" id="image_display"></div>
+    <div class="imgname" id="imgname"></div>
+    <div class="cont">
+        <button class="btn" id="left"><=</button>
+        <button class="btn" id="auto">AUTO</button>
+        <button class="btn" id="right">=></button>
+        <select id="sel">
+            <option value="10">0.01s</option>
+            <option value="20">0.02s</option>
+            <option value="30">0.03s</option>
+            <option value="40">0.04s</option>
+            <option value="50">0.05s</option>
+            <option value="60">0.06s</option>
+            <option value="70">0.07s</option>
+            <option value="80">0.08s</option>
+            <option value="90">0.09s</option>
+            <option value="100">0.1s</option>
+            <option value="200">0.2s</option>
+            <option value="300">0.3s</option>
+            <option value="400">0.4s</option>
+            <option value="500">0.5s</option>
+            <option value="600">0.6s</option>
+            <option value="700">0.7s</option>
+            <option value="800">0.8s</option>
+            <option value="900">0.9s</option>
+            <option value="1000">1s</option>
+        </select>
+    </div>
+    <div class="boxs" onclick="window.print(this)">
+        <div class="box">image_1</div>
+        <div class="box">image_2</div>
+        <div class="box">image_3</div>
+        <div class="box">image_4</div>
+        <div class="box">image_5</div>
+        <div class="box">image_6</div>
+        <div class="box">image_7</div>
+        <div class="box">image_8</div>
+        <div class="box">image_9</div>
+        <div class="box">image_10</div>
+        <div class="box">image_11</div>
+        <div class="box">image_12</div>
+        <div class="box">image_13</div>
+        <div class="box">image_14</div>
+        <div class="box">image_15</div>
+        <div class="box">image_16</div>
+        <div class="box">image_17</div>
+        <div class="box">image_18</div>
+        <div class="box">image_19</div>
+        <div class="box">image_20</div>
+        <div class="box">image_21</div>
+        <div class="box">image_22</div>
+        <div class="box">image_23</div>
+        <div class="box">image_24</div>
+        <div class="box">image_25</div>
+        <div class="box">image_26</div>
+        <div class="box">image_27</div>
+        <div class="box">image_28</div>
+    </div>
+</body>
+<script>
+    const cont = document.querySelectorAll(".btn");
+    const pos = document.querySelectorAll(".box");
+    const imgname = document.getElementById("imgname");
+
+    i = 1
+    
+    cont[0].addEventListener("click", () => {
+        i = i - 1
+        if(i <= 0) {
+            i = 28;
+        }
+        localStorage.setItem("m_img_current", i);
+        document.getElementById("image_display").innerHTML = "<img class='image' src='../DULTKAJSZMCXVXHRDICKDGBGD@FIVDTBHVKGMIKOZVILS@VMH@UHUXXTZAVOHOPEASL@J[GCLSNQLZPMBVNHROSNZTFICQHNPUGC/slices/Lu20220729-0826_" + localStorage.getItem('m_img_current') + ".gif'>";
+        pos[parseInt(localStorage.getItem("m_img_current")) - 1].style.color = "red";
+        pos[parseInt(localStorage.getItem("m_img_current")) - 1].appendChild(document.createElement('span')).textContent = " UP ";
+        imgname.innerText = "Lu20220729-0826_" + localStorage.getItem("m_img_current");
+    })
+    
+    cont[1].addEventListener("click", () => {
+        const ai = setInterval(() => {
+            localStorage.setItem("m_img_current", i);
+            document.getElementById("image_display").innerHTML = "<img class='image' src='../DULTKAJSZMCXVXHRDICKDGBGD@FIVDTBHVKGMIKOZVILS@VMH@UHUXXTZAVOHOPEASL@J[GCLSNQLZPMBVNHROSNZTFICQHNPUGC/slices/Lu20220729-0826_" + localStorage.getItem('m_img_current') + ".gif'>";
+            pos[parseInt(localStorage.getItem("m_img_current")) - 1].style.color = "blue";
+            pos[parseInt(localStorage.getItem("m_img_current")) - 1].appendChild(document.createElement('span')).textContent = " -- ";
+            imgname.innerText = "Lu20220729-0826_" + localStorage.getItem("m_img_current");
+            i = i + 1;
+            if (i > 28) {
+                clearInterval(ai);
+                i = 1;
+            }
+        }, document.getElementById("sel").value)
+    })
+    
+    cont[2].addEventListener("click", () => {
+        localStorage.setItem("m_img_current", i);
+        document.getElementById("image_display").innerHTML = "<img class='image' src='../DULTKAJSZMCXVXHRDICKDGBGD@FIVDTBHVKGMIKOZVILS@VMH@UHUXXTZAVOHOPEASL@J[GCLSNQLZPMBVNHROSNZTFICQHNPUGC/slices/Lu20220729-0826_" + localStorage.getItem('m_img_current') + ".gif'>";
+        pos[parseInt(localStorage.getItem("m_img_current")) - 1].style.color = "green";
+        pos[parseInt(localStorage.getItem("m_img_current")) - 1].appendChild(document.createElement('span')).textContent = " DW ";
+        imgname.innerText = "Lu20220729-0826_" + localStorage.getItem("m_img_current");
+        i = i + 1;
+        if (i > 28) {
+            i = 1;
+        }
+    })
+
+
+</script>
+
+</html>
